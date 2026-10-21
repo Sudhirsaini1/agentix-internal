@@ -1,147 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Agentix provides IT services, cloud solutions, data analytics, and training and development.">
-<title>Agentix | Technology & Training</title>
-<style>
-:root{--navy:#101a38;--blue:#5267f5;--cyan:#55d5e7;--ink:#17213b;--muted:#68748a;--pale:#f5f7fc}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.6}
-a{color:inherit;text-decoration:none}
-.container{width:min(1100px,calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 3px 18px #101a380b}
-nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{font-size:27px;font-weight:850;letter-spacing:-1px}.logo span{color:var(--blue)}
-.nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:700}
-.nav-links a:hover{color:var(--blue)}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:white!important;border:0;border-radius:9px;padding:12px 19px;font-weight:750;cursor:pointer}
-.menu-toggle{display:none;border:1px solid #dbe1ed;background:#fff;border-radius:8px;padding:8px 12px;font-size:20px}
-.hero{color:#fff;background:radial-gradient(ellipse at 85% 30%,#2c417e 0%,transparent 38%),linear-gradient(120deg,#101a38,#17294c);overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;padding:90px 0 95px}
-.eyebrow{color:#788aff;text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800}
-h1{font-size:clamp(42px,5.7vw,68px);line-height:1.08;letter-spacing:-2.5px;margin:18px 0 22px}
-.gradient{background:linear-gradient(90deg,#8796ff,#56d6e8);background-clip:text;-webkit-background-clip:text;color:transparent}
-.lead{max-width:550px;color:#d1d9ed;font-size:17px;line-height:1.85}
-.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
-.btn-outline{border:1px solid #61708e;border-radius:9px;padding:11px 19px;font-weight:700}
-.visual{min-height:330px;position:relative;display:flex;align-items:center;justify-content:center}
-.orb{width:245px;height:245px;border-radius:50%;border:1px solid #7185ff66;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 25%,#6d7dff66,#26385b 48%,#14203d);box-shadow:0 0 90px #5a68ff33,inset 0 0 45px #8294ff22}
-.orb-inner{width:150px;height:150px;border:1px solid #93a0ff99;border-radius:36px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center;background:#5368df22}
-.orb-inner span{transform:rotate(-45deg);font-size:58px;font-weight:900;color:#e7faff}
-.float{position:absolute;padding:13px 16px;border:1px solid #ffffff24;background:#ffffff12;border-radius:13px;font-size:12px;color:#e7ecff;box-shadow:0 10px 35px #0002}
-.f1{top:35px;left:0}.f2{bottom:35px;right:0}
-section{padding:82px 0}
-.center{text-align:center}.section-title{font-size:clamp(30px,4vw,42px);letter-spacing:-1.3px;margin:10px 0 14px}
-.subtitle{font-size:16px;line-height:1.8;color:var(--muted);max-width:680px;margin:0 auto}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px}
-.card{border:1px solid #e5e9f2;border-radius:17px;padding:28px;background:white;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px #15234d12}
-.icon{width:53px;height:53px;display:grid;place-items:center;border-radius:14px;background:#eef0ff;color:var(--blue);font-size:25px;margin-bottom:22px}
-.card h3{font-size:20px;margin-bottom:10px}.card p{font-size:14px;color:var(--muted);line-height:1.85}
-.about{background:var(--pale)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
-.about-copy p{color:var(--muted);line-height:1.9;margin:14px 0}
-.pill{display:inline-block;background:#e9edff;color:#4558d8;font-size:12px;font-weight:750;padding:8px 12px;border-radius:7px;margin:5px 5px 0 0}
-.mission{border-radius:22px;padding:32px;background:linear-gradient(145deg,#182344,#263b69);color:white;min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
-.mission .big{font-size:33px;font-weight:850;line-height:1.25;letter-spacing:-1px;margin:20px 0}
-.mission p{color:#cbd5ec}
-.contact{background:#111b39;color:white}
-.contact .subtitle{color:#c1cbe1}
-.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;margin-top:42px;align-items:start}
-.contact-intro p{color:#c1cbe1;line-height:1.85;margin:12px 0 20px}
-.details{display:grid;gap:13px}
-.detail{padding:18px;border:1px solid #ffffff20;background:#ffffff08;border-radius:12px;display:flex;gap:15px;align-items:flex-start}
-.detail-icon{font-size:21px;color:#8f9cff}
-.detail small{display:block;color:#aebbd8;margin-bottom:6px;font-size:12px;letter-spacing:.7px}
-.detail strong{font-size:14px;overflow-wrap:anywhere}
-footer{background:#0b1229;color:#aebbd8;padding:22px 0;font-size:12px}
-.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-@media(max-width:760px){
- .container{width:min(100% - 36px,1100px)}nav{height:68px}
- .menu-toggle{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:white;padding:20px 22px 24px;box-shadow:0 15px 25px #101a3815;flex-direction:column;align-items:flex-start;gap:18px}
- .nav-links.open{display:flex}.hero-grid{grid-template-columns:1fr;padding:65px 0;gap:12px}
- .visual{min-height:285px}.orb{width:205px;height:205px}.orb-inner{width:125px;height:125px}
- .f1{left:0;top:12px}.f2{right:0;bottom:12px}
- section{padding:64px 0}.cards{grid-template-columns:1fr;gap:15px;margin-top:30px}
- .about-grid,.contact-grid{grid-template-columns:1fr;gap:28px}.mission{min-height:225px}
- h1{letter-spacing:-1.7px}
-}
-@media(min-width:761px) and (max-width:950px){.nav-links{gap:15px}.hero-grid{gap:20px}.cards{gap:14px}.card{padding:22px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>AgentixInternal | Technology & Talent Development</title>
+  <meta name="description" content="AgentixInternal provides IT services, cloud solutions, data analytics, and training and development." />
+  <style>
+    :root {
+      --ink: #10172a;
+      --muted: #667085;
+      --navy: #0b1020;
+      --panel: #111a31;
+      --blue: #6577ff;
+      --cyan: #48d7e8;
+      --paper: #f7f8fc;
+      --white: #fff;
+      --line: rgba(255,255,255,.13);
+      --shadow: 0 24px 70px rgba(16,23,42,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(1160px, calc(100% - 44px)); margin-inline: auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(11,16,32,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: white; font-weight: 800; letter-spacing: -.04em; font-size: 1.15rem; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; color: white; background: linear-gradient(135deg, var(--blue), var(--cyan)); box-shadow: 0 8px 24px rgba(101,119,255,.35); font-size: 1.05rem; }
+    .brand span:last-child { color: #aeb8ff; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #c6cce0; font-size: .92rem; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--cyan); }
+    .nav-cta, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 12px; padding: 12px 18px; background: linear-gradient(110deg, var(--blue), #7b63ed); color: white; font-weight: 700; box-shadow: 0 10px 26px rgba(101,119,255,.24); transition: transform .2s ease, box-shadow .2s ease; cursor: pointer; }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(101,119,255,.32); }
+    .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 10px; color: white; background: transparent; padding: 8px 11px; cursor: pointer; }
+    .hero { position: relative; overflow: hidden; color: white; background: radial-gradient(ellipse at 78% 18%, rgba(72,215,232,.16), transparent 30%), radial-gradient(ellipse at 20% 75%, rgba(101,119,255,.18), transparent 34%), var(--navy); }
+    .hero:after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .23; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, black, transparent 90%); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 54px; padding-block: 100px 112px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #a9f2f7; text-transform: uppercase; font-size: .75rem; letter-spacing: .16em; font-weight: 800; }
+    .eyebrow:before { content: ""; width: 24px; height: 2px; background: var(--cyan); }
+    h1 { margin: 20px 0 22px; font-size: clamp(2.8rem, 5.5vw, 5.15rem); line-height: 1.02; letter-spacing: -.065em; max-width: 720px; }
+    .gradient-text { background: linear-gradient(100deg, #fff 10%, #9aeaf2 55%, #aab2ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-copy { max-width: 590px; color: #b9c2d9; font-size: 1.1rem; margin-bottom: 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn-outline { border: 1px solid rgba(255,255,255,.24); color: white; background: rgba(255,255,255,.04); box-shadow: none; }
+    .hero-note { margin-top: 28px; display: flex; align-items: center; gap: 12px; color: #a8b2ca; font-size: .87rem; }
+    .status-dot { width: 8px; height: 8px; background: #5ce1b2; border-radius: 50%; box-shadow: 0 0 0 5px rgba(92,225,178,.12); }
+    .visual { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .orbit { position: absolute; border: 1px solid rgba(151,171,255,.22); border-radius: 50%; transform: rotate(-22deg); }
+    .orbit.one { width: 340px; height: 340px; }
+    .orbit.two { width: 265px; height: 265px; transform: rotate(30deg); border-style: dashed; }
+    .core-card { position: relative; z-index: 2; width: min(100%, 310px); padding: 26px; border-radius: 25px; background: linear-gradient(145deg, rgba(30,43,76,.96), rgba(15,24,46,.94)); border: 1px solid rgba(255,255,255,.16); box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+    .core-icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; background: linear-gradient(135deg, var(--blue), var(--cyan)); font-size: 1.5rem; margin-bottom: 24px; }
+    .core-card h3 { margin: 0 0 8px; font-size: 1.35rem; letter-spacing: -.03em; }
+    .core-card p { color: #aebbd5; font-size: .92rem; margin: 0 0 24px; }
+    .mini-bars { display: grid; gap: 10px; }
+    .bar { height: 7px; border-radius: 20px; background: rgba(255,255,255,.09); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .float-chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 9px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.16); background: rgba(18,28,53,.92); border-radius: 14px; box-shadow: 0 14px 36px rgba(0,0,0,.22); color: #e9edff; font-size: .84rem; font-weight: 700; }
+    .chip-a { top: 40px; right: -4px; } .chip-b { bottom: 42px; left: -5px; }
+    .chip-icon { color: var(--cyan); font-size: 1.1rem; }
+    .trust-strip { background: white; border-bottom: 1px solid #edf0f6; }
+    .trust-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; }
+    .trust-label { color: #8790a5; font-size: .78rem; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; }
+    .trust-items { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 28px; color: #4e5870; font-weight: 750; font-size: .92rem; }
+    section { scroll-margin-top: 80px; }
+    .section { padding-block: 100px; }
+    .section-heading { max-width: 700px; margin-bottom: 44px; }
+    .kicker { color: #5b68e8; font-size: .76rem; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { margin: 10px 0 16px; color: var(--ink); font-size: clamp(2rem, 3.8vw, 3.25rem); letter-spacing: -.055em; line-height: 1.1; }
+    .section-heading p, .about-copy p { color: var(--muted); font-size: 1.04rem; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card { padding: 29px; background: white; border: 1px solid #e9edf6; border-radius: 20px; box-shadow: 0 10px 35px rgba(28,39,75,.035); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #d7dcff; }
+    .service-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; color: #535fe0; background: #eff0ff; font-size: 1.45rem; margin-bottom: 24px; }
+    .service-card h3 { margin: 0 0 10px; font-size: 1.23rem; letter-spacing: -.025em; }
+    .service-card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .learn-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: #5663df; font-size: .9rem; font-weight: 800; }
+    .about-section { background: white; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+    .about-visual { position: relative; min-height: 390px; border-radius: 26px; overflow: hidden; padding: 32px; color: white; background: radial-gradient(circle at 75% 20%, rgba(72,215,232,.3), transparent 28%), linear-gradient(145deg, #101832, #242b5e); }
+    .about-visual:before, .about-visual:after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; }
+    .about-visual:before { width: 330px; height: 330px; right: -90px; top: -80px; }
+    .about-visual:after { width: 230px; height: 230px; right: -40px; top: -30px; }
+    .about-visual-content { position: relative; z-index: 1; display: flex; height: 100%; min-height: 325px; flex-direction: column; justify-content: space-between; }
+    .about-symbol { font-size: 3.5rem; line-height: 1; color: #a4f1f6; }
+    .about-visual h3 { font-size: 1.9rem; letter-spacing: -.04em; max-width: 290px; margin: 40px 0 12px; }
+    .about-visual p { color: #bdc8e2; max-width: 300px; margin: 0; }
+    .about-copy h2 { max-width: 520px; }
+    .about-copy p + p { margin-top: 16px; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .feature { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; color: #28324b; font-size: .92rem; }
+    .check { flex: 0 0 22px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #3d9c87; background: #e3f8f1; font-size: .8rem; }
+    .contact-section { color: white; background: linear-gradient(120deg, #0b1020, #151e3c); }
+    .contact-section h2 { color: white; }
+    .contact-section .section-heading p { color: #aeb9d1; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+    .contact-list { display: grid; gap: 18px; margin-top: 30px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 15px; }
+    .contact-item .service-icon { flex-shrink: 0; margin: 0; color: #a8b0ff; background: rgba(101,119,255,.15); }
+    .contact-item strong { display: block; margin: 2px 0 4px; color: white; }
+    .contact-item span, .contact-item a { display: block; color: #b7c1d8; font-size: .94rem; overflow-wrap: anywhere; }
+    .contact-form { padding: 30px; border-radius: 22px; background: white; color: var(--ink); box-shadow: 0 22px 65px rgba(0,0,0,.2); }
+    .contact-form h3 { margin: 0 0 5px; font-size: 1.4rem; letter-spacing: -.03em; }
+    .contact-form > p { color: var(--muted); margin: 0 0 22px; font-size: .92rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 7px; margin-bottom: 15px; }
+    .field label { font-size: .84rem; color: #414b63; font-weight: 750; }
+    .field input, .field textarea { width: 100%; border: 1px solid #e1e6f0; background: #fafbfe; border-radius: 10px; padding: 12px 13px; outline: none; color: var(--ink); transition: border .2s, box-shadow .2s; }
+    .field input:focus, .field textarea:focus { border-color: #7c86f5; box-shadow: 0 0 0 3px rgba(101,119,255,.12); }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .contact-form .btn { width: 100%; }
+    .form-status { min-height: 22px; margin-top: 12px; color: #237e68; font-size: .9rem; }
+    footer { background: #080c18; color: #a6afc5; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 25px; font-size: .85rem; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: white; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 18px; }
+      .hero-grid { gap: 22px; padding-block: 78px 88px; }
+      .visual { transform: scale(.9); }
+      .about-grid { gap: 42px; }
+      .contact-grid { gap: 35px; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 34px, 560px); }
+      .nav-wrap { min-height: 68px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 24px 22px; flex-direction: column; align-items: stretch; gap: 0; background: #0b1020; border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; }
+      .hero-grid { grid-template-columns: 1fr; padding-block: 70px 55px; }
+      h1 { font-size: clamp(2.7rem, 12vw, 4rem); }
+      .hero-copy { font-size: 1rem; }
+      .visual { min-height: 330px; margin-top: 8px; transform: scale(.88); }
+      .orbit.one { width: 300px; height: 300px; }
+      .orbit.two { width: 235px; height: 235px; }
+      .chip-a { right: -10px; top: 15px; } .chip-b { left: -10px; bottom: 12px; }
+      .trust-inner { align-items: flex-start; flex-direction: column; }
+      .trust-items { justify-content: flex-start; gap: 14px 22px; }
+      .section { padding-block: 72px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 25px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-visual { min-height: 330px; }
+      .about-visual-content { min-height: 265px; }
+      .feature-list { grid-template-columns: 1fr; }
+      .contact-grid { gap: 36px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <nav class="container" aria-label="Main navigation">
-    <a href="#home" class="logo" aria-label="Agentix home">agent<span>ix</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a><a href="#contact">Contact Us</a>
-      <a class="btn" href="#contact">Let's Talk ↗</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="AgentixInternal home">
+        <span class="brand-mark">A</span>
+        <span>Agentix<span>Internal</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">☰</button>
     </div>
-  </nav>
-</header>
-<main>
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Technology · Training · Innovation</div>
-        <h1>Building skills.<br>Creating <span class="gradient">what's next.</span></h1>
-        <p class="lead">Empowering businesses and individuals with technology services, cloud solutions, data insights, and professional training for a smarter digital future.</p>
-        <div class="actions"><a class="btn" href="#services">Explore Our Services ↗</a><a class="btn-outline" href="#about">Discover Agentix</a></div>
-      </div>
-      <div class="visual" aria-label="Abstract technology illustration">
-        <div class="orb"><div class="orb-inner"><span>A</span></div></div>
-        <div class="float f1">✦ &nbsp; Learn. Build. Innovate.</div>
-        <div class="float f2">◈ &nbsp; Technology for tomorrow</div>
-      </div>
-    </div>
-  </section>
-  <section id="services">
-    <div class="container center">
-      <div class="eyebrow">What we do</div><h2 class="section-title">Our Services</h2>
-      <p class="subtitle">Practical technology solutions and learning experiences designed to help people and businesses move forward with confidence.</p>
-      <div class="cards">
-        <article class="card"><div class="icon">⌘</div><h3>IT Services</h3><p>Technology consulting, software development, and IT support to help your organization solve problems, streamline operations, and grow.</p></article>
-        <article class="card"><div class="icon">☁</div><h3>Cloud Solutions</h3><p>Cloud adoption, migration, and infrastructure solutions that support flexibility, scalability, and more efficient digital operations.</p></article>
-        <article class="card"><div class="icon">▥</div><h3>Data Analytics</h3><p>Turn complex data into actionable insights with analytics, reporting, and data-driven approaches that support smarter decisions.</p></article>
-      </div>
-    </div>
-  </section>
-  <section class="about" id="about">
-    <div class="container about-grid">
-      <div class="about-copy">
-        <div class="eyebrow">Get to know us</div><h2 class="section-title">About Agentix</h2>
-        <p>At Agentix, we are committed to providing training and development that helps individuals strengthen their skills and prepare for evolving industry needs.</p>
-        <p>We combine a learning-focused approach with technology expertise to help learners and businesses build capabilities, embrace innovation, and achieve their goals.</p>
-        <span class="pill">Training &amp; Development</span><span class="pill">Technology Skills</span><span class="pill">Continuous Learning</span>
-      </div>
-      <div class="mission"><div class="eyebrow">Our Mission</div><div class="big">Helping people grow in a digital-first world.</div><p>Building knowledge, developing skills, and creating opportunities through technology and learning.</p></div>
-    </div>
-  </section>
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="center"><div class="eyebrow">Let's connect</div><h2 class="section-title">Contact Us</h2><p class="subtitle">Have a project in mind or want to learn more about our services? We'd love to hear from you.</p></div>
-      <div class="contact-grid">
-        <div class="contact-intro"><h3 style="font-size:24px">Let's build something great.</h3><p>Reach out to Agentix for information about our IT services, cloud solutions, data analytics, or training and development programs.</p><a class="btn" href="mailto:info@agentix?subject=Inquiry%20for%20Agentix">Email Our Team ↗</a></div>
-        <div class="details">
-          <a class="detail" href="tel:99999999999"><span class="detail-icon">☎</span><span><small>PHONE</small><strong>9999999999</strong></span></a>
-          <a class="detail" href="mailto:info@agentix"><span class="detail-icon">✉</span><span><small>EMAIL</small><strong>info@agentix</strong></span></a>
-          <div class="detail"><span class="detail-icon">⌖</span><span><small>CORPORATE OFFICE</small><strong>T3 - 736, Golden I,<br>Greater Noida West</strong></span></div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Technology · Training · Growth</div>
+          <h1>Build what's next with <span class="gradient-text">AgentixInternal.</span></h1>
+          <p class="hero-copy">We bring technology and talent together—helping businesses move forward with practical IT solutions, cloud capabilities, data insights, and training that builds real-world skills.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#services">Explore our services <span aria-hidden="true">→</span></a>
+            <a class="btn btn-outline" href="#about">Get to know us</a>
+          </div>
+          <div class="hero-note"><span class="status-dot"></span> Technology solutions. People-powered progress.</div>
+        </div>
+        <div class="visual" aria-label="Technology and development illustration">
+          <div class="orbit one"></div><div class="orbit two"></div>
+          <div class="float-chip chip-a"><span class="chip-icon">✦</span> Smarter solutions</div>
+          <div class="float-chip chip-b"><span class="chip-icon">↗</span> Skills for tomorrow</div>
+          <div class="core-card">
+            <div class="core-icon">⌘</div>
+            <h3>Ideas into impact.</h3>
+            <p>Connecting people, technology, and possibilities to create meaningful progress.</p>
+            <div class="mini-bars"><div class="bar"><span style="width:88%"></span></div><div class="bar"><span style="width:67%"></span></div><div class="bar"><span style="width:78%"></span></div></div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <div class="trust-label">What we bring together</div>
+        <div class="trust-items"><span>IT Services</span><span>Cloud Solutions</span><span>Data Analytics</span><span>Training & Development</span></div>
+      </div>
     </div>
-  </section>
-</main>
-<footer><div class="container footer-inner"><span>© <span id="year"></span> Agentix. All rights reserved.</span><span>Technology · Training · Development</span></div></footer>
-<script>
-const menuToggle=document.getElementById('menuToggle');
-const navLinks=document.getElementById('navLinks');
-menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'✕':'☰';});
-navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
-document.getElementById('year').textContent=new Date().getFullYear();
-</script>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="kicker">Our services</div>
+          <h2>Technology that moves you forward.</h2>
+          <p>From reliable IT support to modern cloud platforms and data-led decisions, we help you turn challenges into opportunities.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⌘</div>
+            <h3>IT Services</h3>
+            <p>Practical technology services designed to support your operations, improve reliability, and help your teams work smarter.</p>
+            <a class="learn-more" href="#contact">Discuss your needs <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">☁</div>
+            <h3>Cloud</h3>
+            <p>Cloud-focused guidance to help your organization build flexible, scalable, and dependable digital foundations.</p>
+            <a class="learn-more" href="#contact">Explore cloud options <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">▥</div>
+            <h3>Data Analytics</h3>
+            <p>Make information more useful with data analysis that helps uncover patterns, understand performance, and guide decisions.</p>
+            <a class="learn-more" href="#contact">Unlock your data <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual">
+          <div class="about-visual-content">
+            <div class="about-symbol" aria-hidden="true">✳</div>
+            <div>
+              <h3>Better skills. Better systems. Better outcomes.</h3>
+              <p>Helping people and organizations grow with confidence in a changing digital world.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-copy">
+          <div class="kicker">About AgentixInternal</div>
+          <h2>We believe progress starts with people.</h2>
+          <p>AgentixInternal provides training and development to help individuals and teams build their capabilities, strengthen their knowledge, and prepare for new opportunities.</p>
+          <p>We pair a learning-first mindset with a practical approach to technology, helping businesses and professionals keep moving forward with confidence.</p>
+          <div class="feature-list">
+            <div class="feature"><span class="check">✓</span><span>Training and development</span></div>
+            <div class="feature"><span class="check">✓</span><span>Practical, modern technology</span></div>
+            <div class="feature"><span class="check">✓</span><span>Growth-focused approach</span></div>
+            <div class="feature"><span class="check">✓</span><span>Solutions built around your needs</span></div>
+          </div>
+          <div style="margin-top:30px"><a class="btn" href="#contact">Start a conversation <span aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="kicker" style="color:#aab2ff">Contact us</div>
+          <h2>Let's make your next step count.</h2>
+          <p>Have a project in mind or want to learn more about our services and training? We'd be glad to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+          <div>
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="service-icon" aria-hidden="true">☎</div>
+                <div><strong>Phone</strong><a href="tel:9999999999">9999999999</a></div>
+              </div>
+              <div class="contact-item">
+                <div class="service-icon" aria-hidden="true">✉</div>
+                <div><strong>Email</strong><a href="mailto:info@agentixinfo.com">info@agentixinfo.com</a></div>
+              </div>
+              <div class="contact-item">
+                <div class="service-icon" aria-hidden="true">⌖</div>
+                <div><strong>Corporate office</strong><span>T3 - 736, Golden I,<br />Greater Noida West</span></div>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <h3>Send us a message</h3>
+            <p>Fill in your details and tell us how we can help.</p>
+            <div class="form-row">
+              <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="Full name" required /></div>
+              <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+            </div>
+            <div class="field"><label for="subject">What can we help with?</label><input id="subject" name="subject" type="text" placeholder="IT services, training, cloud..." required /></div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us a little about what you need..." required></textarea></div>
+            <button class="btn" type="submit">Prepare email <span aria-hidden="true">→</span></button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">A</span><span>Agentix<span>Internal</span></span></a>
+      <div>© <span id="year"></span> AgentixInternal. All rights reserved.</div>
+      <div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // This front-end form opens the visitor's email app; it does not send messages to a server.
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const subject = String(data.get('subject') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+      document.getElementById('formStatus').textContent = 'Opening your email app to complete the message…';
+      window.location.href = `mailto:info@agentixinfo.com?subject=${encodeURIComponent(subject || 'Website enquiry')}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
 </body>
 </html>
