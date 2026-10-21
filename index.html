@@ -1,351 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0b1020" />
-  <title>AgentixInternal | Technology & Talent Development</title>
-  <meta name="description" content="AgentixInternal provides IT services, cloud solutions, data analytics, and training and development." />
-  <style>
-    :root {
-      --ink: #10172a;
-      --muted: #667085;
-      --navy: #0b1020;
-      --panel: #111a31;
-      --blue: #6577ff;
-      --cyan: #48d7e8;
-      --paper: #f7f8fc;
-      --white: #fff;
-      --line: rgba(255,255,255,.13);
-      --shadow: 0 24px 70px rgba(16,23,42,.12);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font: inherit; }
-    .container { width: min(1160px, calc(100% - 44px)); margin-inline: auto; }
-    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(11,16,32,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
-    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-    .brand { display: inline-flex; align-items: center; gap: 11px; color: white; font-weight: 800; letter-spacing: -.04em; font-size: 1.15rem; white-space: nowrap; }
-    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; color: white; background: linear-gradient(135deg, var(--blue), var(--cyan)); box-shadow: 0 8px 24px rgba(101,119,255,.35); font-size: 1.05rem; }
-    .brand span:last-child { color: #aeb8ff; }
-    .nav-links { display: flex; align-items: center; gap: 30px; color: #c6cce0; font-size: .92rem; }
-    .nav-links a { transition: color .2s ease; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--cyan); }
-    .nav-cta, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 12px; padding: 12px 18px; background: linear-gradient(110deg, var(--blue), #7b63ed); color: white; font-weight: 700; box-shadow: 0 10px 26px rgba(101,119,255,.24); transition: transform .2s ease, box-shadow .2s ease; cursor: pointer; }
-    .nav-cta:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(101,119,255,.32); }
-    .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 10px; color: white; background: transparent; padding: 8px 11px; cursor: pointer; }
-    .hero { position: relative; overflow: hidden; color: white; background: radial-gradient(ellipse at 78% 18%, rgba(72,215,232,.16), transparent 30%), radial-gradient(ellipse at 20% 75%, rgba(101,119,255,.18), transparent 34%), var(--navy); }
-    .hero:after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .23; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, black, transparent 90%); }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 54px; padding-block: 100px 112px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #a9f2f7; text-transform: uppercase; font-size: .75rem; letter-spacing: .16em; font-weight: 800; }
-    .eyebrow:before { content: ""; width: 24px; height: 2px; background: var(--cyan); }
-    h1 { margin: 20px 0 22px; font-size: clamp(2.8rem, 5.5vw, 5.15rem); line-height: 1.02; letter-spacing: -.065em; max-width: 720px; }
-    .gradient-text { background: linear-gradient(100deg, #fff 10%, #9aeaf2 55%, #aab2ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-copy { max-width: 590px; color: #b9c2d9; font-size: 1.1rem; margin-bottom: 30px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-    .btn-outline { border: 1px solid rgba(255,255,255,.24); color: white; background: rgba(255,255,255,.04); box-shadow: none; }
-    .hero-note { margin-top: 28px; display: flex; align-items: center; gap: 12px; color: #a8b2ca; font-size: .87rem; }
-    .status-dot { width: 8px; height: 8px; background: #5ce1b2; border-radius: 50%; box-shadow: 0 0 0 5px rgba(92,225,178,.12); }
-    .visual { position: relative; min-height: 390px; display: grid; place-items: center; }
-    .orbit { position: absolute; border: 1px solid rgba(151,171,255,.22); border-radius: 50%; transform: rotate(-22deg); }
-    .orbit.one { width: 340px; height: 340px; }
-    .orbit.two { width: 265px; height: 265px; transform: rotate(30deg); border-style: dashed; }
-    .core-card { position: relative; z-index: 2; width: min(100%, 310px); padding: 26px; border-radius: 25px; background: linear-gradient(145deg, rgba(30,43,76,.96), rgba(15,24,46,.94)); border: 1px solid rgba(255,255,255,.16); box-shadow: 0 30px 80px rgba(0,0,0,.3); }
-    .core-icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; background: linear-gradient(135deg, var(--blue), var(--cyan)); font-size: 1.5rem; margin-bottom: 24px; }
-    .core-card h3 { margin: 0 0 8px; font-size: 1.35rem; letter-spacing: -.03em; }
-    .core-card p { color: #aebbd5; font-size: .92rem; margin: 0 0 24px; }
-    .mini-bars { display: grid; gap: 10px; }
-    .bar { height: 7px; border-radius: 20px; background: rgba(255,255,255,.09); overflow: hidden; }
-    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--cyan)); }
-    .float-chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 9px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.16); background: rgba(18,28,53,.92); border-radius: 14px; box-shadow: 0 14px 36px rgba(0,0,0,.22); color: #e9edff; font-size: .84rem; font-weight: 700; }
-    .chip-a { top: 40px; right: -4px; } .chip-b { bottom: 42px; left: -5px; }
-    .chip-icon { color: var(--cyan); font-size: 1.1rem; }
-    .trust-strip { background: white; border-bottom: 1px solid #edf0f6; }
-    .trust-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; }
-    .trust-label { color: #8790a5; font-size: .78rem; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; }
-    .trust-items { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 28px; color: #4e5870; font-weight: 750; font-size: .92rem; }
-    section { scroll-margin-top: 80px; }
-    .section { padding-block: 100px; }
-    .section-heading { max-width: 700px; margin-bottom: 44px; }
-    .kicker { color: #5b68e8; font-size: .76rem; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
-    h2 { margin: 10px 0 16px; color: var(--ink); font-size: clamp(2rem, 3.8vw, 3.25rem); letter-spacing: -.055em; line-height: 1.1; }
-    .section-heading p, .about-copy p { color: var(--muted); font-size: 1.04rem; margin: 0; }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .service-card { padding: 29px; background: white; border: 1px solid #e9edf6; border-radius: 20px; box-shadow: 0 10px 35px rgba(28,39,75,.035); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
-    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #d7dcff; }
-    .service-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; color: #535fe0; background: #eff0ff; font-size: 1.45rem; margin-bottom: 24px; }
-    .service-card h3 { margin: 0 0 10px; font-size: 1.23rem; letter-spacing: -.025em; }
-    .service-card p { margin: 0; color: var(--muted); font-size: .95rem; }
-    .learn-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: #5663df; font-size: .9rem; font-weight: 800; }
-    .about-section { background: white; }
-    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
-    .about-visual { position: relative; min-height: 390px; border-radius: 26px; overflow: hidden; padding: 32px; color: white; background: radial-gradient(circle at 75% 20%, rgba(72,215,232,.3), transparent 28%), linear-gradient(145deg, #101832, #242b5e); }
-    .about-visual:before, .about-visual:after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; }
-    .about-visual:before { width: 330px; height: 330px; right: -90px; top: -80px; }
-    .about-visual:after { width: 230px; height: 230px; right: -40px; top: -30px; }
-    .about-visual-content { position: relative; z-index: 1; display: flex; height: 100%; min-height: 325px; flex-direction: column; justify-content: space-between; }
-    .about-symbol { font-size: 3.5rem; line-height: 1; color: #a4f1f6; }
-    .about-visual h3 { font-size: 1.9rem; letter-spacing: -.04em; max-width: 290px; margin: 40px 0 12px; }
-    .about-visual p { color: #bdc8e2; max-width: 300px; margin: 0; }
-    .about-copy h2 { max-width: 520px; }
-    .about-copy p + p { margin-top: 16px; }
-    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-    .feature { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; color: #28324b; font-size: .92rem; }
-    .check { flex: 0 0 22px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #3d9c87; background: #e3f8f1; font-size: .8rem; }
-    .contact-section { color: white; background: linear-gradient(120deg, #0b1020, #151e3c); }
-    .contact-section h2 { color: white; }
-    .contact-section .section-heading p { color: #aeb9d1; }
-    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
-    .contact-list { display: grid; gap: 18px; margin-top: 30px; }
-    .contact-item { display: flex; align-items: flex-start; gap: 15px; }
-    .contact-item .service-icon { flex-shrink: 0; margin: 0; color: #a8b0ff; background: rgba(101,119,255,.15); }
-    .contact-item strong { display: block; margin: 2px 0 4px; color: white; }
-    .contact-item span, .contact-item a { display: block; color: #b7c1d8; font-size: .94rem; overflow-wrap: anywhere; }
-    .contact-form { padding: 30px; border-radius: 22px; background: white; color: var(--ink); box-shadow: 0 22px 65px rgba(0,0,0,.2); }
-    .contact-form h3 { margin: 0 0 5px; font-size: 1.4rem; letter-spacing: -.03em; }
-    .contact-form > p { color: var(--muted); margin: 0 0 22px; font-size: .92rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field { display: grid; gap: 7px; margin-bottom: 15px; }
-    .field label { font-size: .84rem; color: #414b63; font-weight: 750; }
-    .field input, .field textarea { width: 100%; border: 1px solid #e1e6f0; background: #fafbfe; border-radius: 10px; padding: 12px 13px; outline: none; color: var(--ink); transition: border .2s, box-shadow .2s; }
-    .field input:focus, .field textarea:focus { border-color: #7c86f5; box-shadow: 0 0 0 3px rgba(101,119,255,.12); }
-    .field textarea { resize: vertical; min-height: 110px; }
-    .contact-form .btn { width: 100%; }
-    .form-status { min-height: 22px; margin-top: 12px; color: #237e68; font-size: .9rem; }
-    footer { background: #080c18; color: #a6afc5; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 25px; font-size: .85rem; }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a:hover { color: white; }
-    @media (max-width: 900px) {
-      .nav-links { gap: 18px; }
-      .hero-grid { gap: 22px; padding-block: 78px 88px; }
-      .visual { transform: scale(.9); }
-      .about-grid { gap: 42px; }
-      .contact-grid { gap: 35px; }
-    }
-    @media (max-width: 720px) {
-      .container { width: min(100% - 34px, 560px); }
-      .nav-wrap { min-height: 68px; }
-      .menu-toggle { display: inline-flex; }
-      .nav-cta { display: none; }
-      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 24px 22px; flex-direction: column; align-items: stretch; gap: 0; background: #0b1020; border-bottom: 1px solid var(--line); }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 12px 0; }
-      .hero-grid { grid-template-columns: 1fr; padding-block: 70px 55px; }
-      h1 { font-size: clamp(2.7rem, 12vw, 4rem); }
-      .hero-copy { font-size: 1rem; }
-      .visual { min-height: 330px; margin-top: 8px; transform: scale(.88); }
-      .orbit.one { width: 300px; height: 300px; }
-      .orbit.two { width: 235px; height: 235px; }
-      .chip-a { right: -10px; top: 15px; } .chip-b { left: -10px; bottom: 12px; }
-      .trust-inner { align-items: flex-start; flex-direction: column; }
-      .trust-items { justify-content: flex-start; gap: 14px 22px; }
-      .section { padding-block: 72px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .service-card { padding: 25px; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .about-visual { min-height: 330px; }
-      .about-visual-content { min-height: 265px; }
-      .feature-list { grid-template-columns: 1fr; }
-      .contact-grid { gap: 36px; }
-      .form-row { grid-template-columns: 1fr; gap: 0; }
-      .contact-form { padding: 24px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Executive Learning Hub</title>
+<style>
+:root{
+  --bg:#07111f; --panel:#0d1b2e; --panel2:#101f34; --line:#20344f;
+  --text:#edf4ff; --muted:#9eb0c8; --accent:#65d7ff; --accent2:#9b7cff;
+  --good:#4fe0a5; --warn:#ffd166; --danger:#ff7c9c; --shadow:0 20px 60px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at 80% -10%,#193b5d 0,#07111f 36%);color:var(--text);line-height:1.5}
+button,input{font:inherit}.shell{display:flex;min-height:100vh}.sidebar{width:260px;border-right:1px solid var(--line);background:rgba(6,16,29,.82);backdrop-filter:blur(18px);padding:24px 16px;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:11px;align-items:center;padding:6px 10px 26px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#07111f;font-weight:900}.brand b{font-size:15px}.brand small{display:block;color:var(--muted);font-size:11px}
+.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#b8c8db;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer}.nav button:hover,.nav button.active{background:#12253c;color:#fff}.nav button span{margin-right:9px}.side-note{margin:30px 8px 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:#0b182a;color:var(--muted);font-size:12px}
+main{flex:1;max-width:1500px;margin:auto;padding:26px 34px 70px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:25px}.search{position:relative;max-width:570px;flex:1}.search input{width:100%;background:#0b192b;border:1px solid var(--line);border-radius:12px;padding:12px 15px 12px 42px;color:#fff;outline:none}.search:before{content:"⌕";position:absolute;left:15px;top:8px;color:var(--muted);font-size:20px}.actions{display:flex;gap:8px}.pill,.btn{border:1px solid var(--line);background:#0d1b2e;color:#dce9f8;border-radius:10px;padding:9px 12px;cursor:pointer}.btn:hover,.pill:hover{border-color:#41617f}
+.hero{display:grid;grid-template-columns:1.6fr .8fr;gap:18px;margin-bottom:20px}.heroCard{padding:30px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,rgba(19,43,69,.92),rgba(10,24,42,.94));box-shadow:var(--shadow);position:relative;overflow:hidden}.heroCard:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(101,215,255,.12);right:-80px;top:-100px;filter:blur(5px)}
+.kicker{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.15em;font-weight:800}.hero h1{font-size:42px;line-height:1.05;margin:10px 0 13px;max-width:780px}.hero p{color:#afc0d5;max-width:760px}.heroStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:13px;padding:13px}.stat b{font-size:21px}.stat span{display:block;color:var(--muted);font-size:11px}.pulse{padding:22px;border:1px solid var(--line);border-radius:22px;background:#0b182a}.pulse h3{margin:0 0 8px}.pulse .big{font-size:32px;font-weight:800}.pulse p{font-size:12px;color:var(--muted)}.bar{height:7px;background:#182940;border-radius:20px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:20px}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px}.sectionHead h2{margin:0;font-size:22px}.sectionHead p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:linear-gradient(180deg,#0e1d30,#0a1728);border:1px solid var(--line);border-radius:16px;padding:17px;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-2px);border-color:#41617f}.icon{width:35px;height:35px;border-radius:10px;background:#142b44;display:grid;place-items:center;margin-bottom:12px}.card h3{font-size:15px;margin:0 0 5px}.card p{color:var(--muted);font-size:12px;margin:0}.learnlink{display:inline-block;margin-top:8px;margin-right:6px;font-size:10px;padding:5px 8px;border-radius:99px;background:#10263d;color:#72dfff;text-decoration:none;border:1px solid #234764}.learnlink:hover{background:#163653}.tag{display:inline-block;margin-top:12px;font-size:10px;padding:4px 7px;border-radius:99px;background:#13283e;color:#9ec4e7}
+.radar{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.timeline,.matrix{border:1px solid var(--line);border-radius:16px;background:#0b182a;padding:18px}.stage{display:grid;grid-template-columns:105px 1fr;gap:15px;padding:13px 0;border-bottom:1px solid #182b42}.stage:last-child{border-bottom:0}.stage b{color:#d9e9f8}.stage small{color:var(--muted)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px}.matrixgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}.mcell{min-height:95px;border:1px solid var(--line);border-radius:12px;padding:11px;background:#0d1d31}.mcell b{font-size:12px}.mcell p{font-size:11px;color:var(--muted)}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.level{padding:17px;border:1px solid var(--line);border-radius:15px;background:#0c192a}.level .num{font-size:11px;color:var(--accent)}.level h3{margin:4px 0}.level ul{padding-left:17px;color:var(--muted);font-size:12px}
+.resources{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.resource{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #182b42}.resource:last-child{border:0}.resource b{font-size:13px}.resource span{font-size:11px;color:var(--muted)}.score{white-space:nowrap;color:var(--warn)}
+.footer{margin-top:40px;color:#71849b;font-size:11px;text-align:center}
+.modal{position:fixed;inset:0;background:rgba(1,7,14,.75);backdrop-filter:blur(8px);display:none;place-items:center;padding:20px;z-index:10}.modal.open{display:grid}.modalBox{max-width:760px;width:100%;max-height:85vh;overflow:auto;background:#0c1b2d;border:1px solid #29415e;border-radius:20px;padding:25px;box-shadow:var(--shadow)}.modalBox h2{margin-top:0}.modalBox p,.modalBox li{color:#b2c3d8;font-size:13px}.close{float:right;border:0;background:#172b43;color:#fff;border-radius:8px;padding:7px 10px;cursor:pointer}
+@media(max-width:1050px){.sidebar{width:80px}.brand div:not(.logo),.nav button span:last-child,.side-note{display:none}.nav button{text-align:center}.grid{grid-template-columns:repeat(2,1fr)}.hero,.radar,.resources{grid-template-columns:1fr}.path{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.sidebar{display:none}main{padding:18px}.topbar{align-items:stretch}.actions{display:none}.hero h1{font-size:31px}.grid,.path{grid-template-columns:1fr}.heroStats{grid-template-columns:1fr 1fr 1fr}.matrixgrid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="AgentixInternal home">
-        <span class="brand-mark">A</span>
-        <span>Agentix<span>Internal</span></span>
-      </a>
-      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact Us</a>
-      </nav>
-      <a class="nav-cta" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">☰</button>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">AI</div><div><b>Executive Learning Hub</b><small>AI • Enterprise • Future Skills</small></div></div>
+  <div class="nav">
+    <button class="active" onclick="scrollToId('overview')"><span>⌂</span><span>Overview</span></button>
+    <button onclick="scrollToId('fundamentals')"><span>◈</span><span>AI Fundamentals</span></button>
+    <button onclick="scrollToId('radar')"><span>◉</span><span>Capabilities Radar</span></button>
+    <button onclick="scrollToId('enterprise')"><span>▦</span><span>Enterprise AI</span></button>
+    <button onclick="scrollToId('executives')"><span>◆</span><span>AI for Executives</span></button>
+    <button onclick="scrollToId('developers')"><span>⌘</span><span>AI + Developers</span></button>
+    <button onclick="scrollToId('skills')"><span>↗</span><span>Skills Roadmap</span></button>
+    <button onclick="scrollToId('teen')"><span>✦</span><span>For a 14-Year-Old</span></button>
+    <button onclick="scrollToId('resources')"><span>☷</span><span>Resources</span></button><button onclick="scrollToId('official-links')"><span>↗</span><span>Official Links</span></button>
+  </div>
+  <div class="side-note"><b>Learning principle</b><br><br>Understand → Experiment → Apply → Measure → Lead</div>
+</aside>
+
+<main>
+<div class="topbar">
+  <div class="search"><input id="search" placeholder="Search AI topics, skills, tools, resources..." oninput="filterCards()"></div>
+  <div class="actions"><button class="pill">🔖 <span id="bookCount">0</span></button><button class="pill">Weekly Briefing</button></div>
+</div>
+
+<section id="overview" class="hero">
+  <div class="heroCard">
+    <div class="kicker">AI Executive Learning Hub</div>
+    <h1>Understand AI. Apply it. Lead the transformation.</h1>
+    <p>A continuously evolving learning portal for executives, IT leaders, enterprises, developers and young learners — connecting AI capabilities with practical business and career decisions.</p>
+    <div class="heroStats">
+      <div class="stat"><b>9</b><span>Learning domains</span></div>
+      <div class="stat"><b>4</b><span>Skill levels</span></div>
+      <div class="stat"><b>∞</b><span>Continuous learning</span></div>
     </div>
-  </header>
+  </div>
+  <div class="pulse"><div class="kicker">Your learning pulse</div><div class="big">72%</div><div>Executive AI foundations</div><div class="bar"><i></i></div><p>Suggested next: Agentic Enterprise → AI operating models → AI ROI.</p><button class="btn" onclick="openTopic('AI for Executives')">Continue learning →</button></div>
+</section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Technology · Training · Growth</div>
-          <h1>Build what's next with <span class="gradient-text">AgentixInternal.</span></h1>
-          <p class="hero-copy">We bring technology and talent together—helping businesses move forward with practical IT solutions, cloud capabilities, data insights, and training that builds real-world skills.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#services">Explore our services <span aria-hidden="true">→</span></a>
-            <a class="btn btn-outline" href="#about">Get to know us</a>
-          </div>
-          <div class="hero-note"><span class="status-dot"></span> Technology solutions. People-powered progress.</div>
-        </div>
-        <div class="visual" aria-label="Technology and development illustration">
-          <div class="orbit one"></div><div class="orbit two"></div>
-          <div class="float-chip chip-a"><span class="chip-icon">✦</span> Smarter solutions</div>
-          <div class="float-chip chip-b"><span class="chip-icon">↗</span> Skills for tomorrow</div>
-          <div class="core-card">
-            <div class="core-icon">⌘</div>
-            <h3>Ideas into impact.</h3>
-            <p>Connecting people, technology, and possibilities to create meaningful progress.</p>
-            <div class="mini-bars"><div class="bar"><span style="width:88%"></span></div><div class="bar"><span style="width:67%"></span></div><div class="bar"><span style="width:78%"></span></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="fundamentals">
+<div class="sectionHead"><div><h2>AI Fundamentals</h2><p>Build the mental models behind modern AI.</p></div></div>
+<div class="grid searchable">
+<script>
+const fundamentals=[
+['🧠','AI & Machine Learning','Core concepts, supervised learning, deep learning and model lifecycle.'],
+['✨','Generative AI','How models generate text, images, code, audio and structured outputs.'],
+['🔤','LLMs','Tokens, context windows, embeddings, inference, fine-tuning and evaluation.'],
+['🔎','RAG','Grounding models with enterprise knowledge, retrieval and citations.'],
+['🤖','AI Agents','Models that plan, use tools, execute actions and iterate toward goals.'],
+['🔗','Agentic AI','Multi-step workflows, orchestration, memory, tools and human oversight.'],
+['👁️','Multimodal AI','Reasoning across text, vision, audio, video and mixed inputs.'],
+['⚙️','AI Automation','Turning repetitive knowledge work into measurable AI-enabled workflows.']
+];
+document.write(fundamentals.map(x=>`<div class="card searchable-card" onclick="openTopic('${x[1]}')"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p><span class="tag">Open learning page →</span><a class="learnlink" href="#" onclick="event.stopPropagation();openExternal('${x[1]}')">Learn online ↗</a></div>`).join(''));
+</script>
+</div></section>
 
-    <div class="trust-strip">
-      <div class="container trust-inner">
-        <div class="trust-label">What we bring together</div>
-        <div class="trust-items"><span>IT Services</span><span>Cloud Solutions</span><span>Data Analytics</span><span>Training & Development</span></div>
-      </div>
-    </div>
+<section id="radar">
+<div class="sectionHead"><div><h2>AI Capabilities Radar</h2><p>Track the shift from assistants to systems that can reason, act and execute.</p></div></div>
+<div class="radar">
+<div class="timeline">
+  <div class="stage"><b><span class="dot"></span>Today</b><div><b>AI copilots & multimodal models</b><br><small>Writing, coding, analysis, image/video understanding, research assistance.</small></div></div>
+  <div class="stage"><b><span class="dot"></span>Emerging</b><div><b>Agents & computer use</b><br><small>Tool calling, browser interaction, coding agents, workflow orchestration and memory.</small></div></div>
+  <div class="stage"><b><span class="dot"></span>Next</b><div><b>Autonomous enterprise workflows</b><br><small>AI coordinating processes across applications with controls, observability and human checkpoints.</small></div></div>
+  <div class="stage"><b><span class="dot"></span>Frontier</b><div><b>Physical & collaborative intelligence</b><br><small>Robotics, embodied AI and increasingly capable AI-to-AI collaboration.</small></div></div>
+</div>
+<div class="matrix">
+  <b>Capability map</b>
+  <div class="matrixgrid">
+    <div class="mcell"><b>Reason</b><p>Planning, analysis, complex problem solving</p></div>
+    <div class="mcell"><b>Perceive</b><p>Vision, audio, video and multimodal context</p></div>
+    <div class="mcell"><b>Act</b><p>Tools, APIs, browser and computer interaction</p></div>
+    <div class="mcell"><b>Remember</b><p>Context, user preferences and enterprise memory</p></div>
+    <div class="mcell"><b>Create</b><p>Code, content, designs and synthetic assets</p></div>
+    <div class="mcell"><b>Collaborate</b><p>Human-agent and multi-agent workflows</p></div>
+  </div>
+</div>
+</div></section>
 
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <div class="kicker">Our services</div>
-          <h2>Technology that moves you forward.</h2>
-          <p>From reliable IT support to modern cloud platforms and data-led decisions, we help you turn challenges into opportunities.</p>
-        </div>
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">⌘</div>
-            <h3>IT Services</h3>
-            <p>Practical technology services designed to support your operations, improve reliability, and help your teams work smarter.</p>
-            <a class="learn-more" href="#contact">Discuss your needs <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">☁</div>
-            <h3>Cloud</h3>
-            <p>Cloud-focused guidance to help your organization build flexible, scalable, and dependable digital foundations.</p>
-            <a class="learn-more" href="#contact">Explore cloud options <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="service-card">
-            <div class="service-icon" aria-hidden="true">▥</div>
-            <h3>Data Analytics</h3>
-            <p>Make information more useful with data analysis that helps uncover patterns, understand performance, and guide decisions.</p>
-            <a class="learn-more" href="#contact">Unlock your data <span aria-hidden="true">→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="enterprise">
+<div class="sectionHead"><div><h2>Enterprise AI</h2><p>Move from experimentation to governed business value.</p></div></div>
+<div class="grid">
+<script>
+const enterprise=[
+['🎯','AI Strategy','Identify strategic opportunities, portfolio priorities and value pools.'],
+['🏢','AI Operating Model','Define teams, ownership, platforms, delivery models and governance.'],
+['🛡️','Governance & Security','Responsible AI, data controls, model risk, privacy and security.'],
+['📈','ROI & Business Cases','Baseline productivity, quality, revenue, cost and risk outcomes.'],
+['🔄','AI Transformation','Redesign processes instead of simply adding a chatbot.'],
+['🧩','Agentic Enterprise','Connect agents to workflows, systems, data and human decision points.'],
+['📋','Adoption Roadmap','Assess → Pilot → Scale → Transform with measurable gates.'],
+['⚖️','Responsible AI','Transparency, human oversight, evaluation and responsible deployment.']
+];
+document.write(enterprise.map(x=>`<div class="card searchable-card" onclick="openTopic('${x[1]}')"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p><span class="tag">Explore framework →</span><a class="learnlink" href="#" onclick="event.stopPropagation();openExternal('${x[1]}')">Learn online ↗</a></div>`).join(''));
+</script>
+</div></section>
 
-    <section class="section about-section" id="about">
-      <div class="container about-grid">
-        <div class="about-visual">
-          <div class="about-visual-content">
-            <div class="about-symbol" aria-hidden="true">✳</div>
-            <div>
-              <h3>Better skills. Better systems. Better outcomes.</h3>
-              <p>Helping people and organizations grow with confidence in a changing digital world.</p>
-            </div>
-          </div>
-        </div>
-        <div class="about-copy">
-          <div class="kicker">About AgentixInternal</div>
-          <h2>We believe progress starts with people.</h2>
-          <p>AgentixInternal provides training and development to help individuals and teams build their capabilities, strengthen their knowledge, and prepare for new opportunities.</p>
-          <p>We pair a learning-first mindset with a practical approach to technology, helping businesses and professionals keep moving forward with confidence.</p>
-          <div class="feature-list">
-            <div class="feature"><span class="check">✓</span><span>Training and development</span></div>
-            <div class="feature"><span class="check">✓</span><span>Practical, modern technology</span></div>
-            <div class="feature"><span class="check">✓</span><span>Growth-focused approach</span></div>
-            <div class="feature"><span class="check">✓</span><span>Solutions built around your needs</span></div>
-          </div>
-          <div style="margin-top:30px"><a class="btn" href="#contact">Start a conversation <span aria-hidden="true">→</span></a></div>
-        </div>
-      </div>
-    </section>
+<section id="executives">
+<div class="sectionHead"><div><h2>AI for Executives</h2><p>Decision support for leaders navigating AI investment and transformation.</p></div></div>
+<div class="grid">
+<div class="card" onclick="openTopic('Executive AI Briefing')"><div class="icon">📰</div><h3>Executive AI Briefing</h3><p>What changed, why it matters and what leaders should watch.</p></div>
+<div class="card" onclick="openTopic('Board & Investment Decisions')"><div class="icon">🏛️</div><h3>Board & Investment Decisions</h3><p>Questions for AI investment, risk, value and operating model decisions.</p></div>
+<div class="card" onclick="openTopic('AI Business Cases')"><div class="icon">💼</div><h3>AI Business Cases</h3><p>Structure use cases around measurable outcomes and adoption feasibility.</p></div>
+<div class="card" onclick="openTopic('Leadership Questions')"><div class="icon">❓</div><h3>Leadership Questions</h3><p>Prompts to challenge assumptions and identify transformation opportunities.</p></div>
+</div></section>
 
-    <section class="section contact-section" id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <div class="kicker" style="color:#aab2ff">Contact us</div>
-          <h2>Let's make your next step count.</h2>
-          <p>Have a project in mind or want to learn more about our services and training? We'd be glad to hear from you.</p>
-        </div>
-        <div class="contact-grid">
-          <div>
-            <div class="contact-list">
-              <div class="contact-item">
-                <div class="service-icon" aria-hidden="true">☎</div>
-                <div><strong>Phone</strong><a href="tel:9999999999">9999999999</a></div>
-              </div>
-              <div class="contact-item">
-                <div class="service-icon" aria-hidden="true">✉</div>
-                <div><strong>Email</strong><a href="mailto:info@agentixinfo.com">info@agentixinfo.com</a></div>
-              </div>
-              <div class="contact-item">
-                <div class="service-icon" aria-hidden="true">⌖</div>
-                <div><strong>Corporate office</strong><span>T3 - 736, Golden I,<br />Greater Noida West</span></div>
-              </div>
-            </div>
-          </div>
-          <form class="contact-form" id="contactForm">
-            <h3>Send us a message</h3>
-            <p>Fill in your details and tell us how we can help.</p>
-            <div class="form-row">
-              <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" placeholder="Full name" required /></div>
-              <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-            </div>
-            <div class="field"><label for="subject">What can we help with?</label><input id="subject" name="subject" type="text" placeholder="IT services, training, cloud..." required /></div>
-            <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us a little about what you need..." required></textarea></div>
-            <button class="btn" type="submit">Prepare email <span aria-hidden="true">→</span></button>
-            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+<section id="developers">
+<div class="sectionHead"><div><h2>AI + Developers</h2><p>The software delivery lifecycle is becoming AI-augmented and increasingly agentic.</p></div></div>
+<div class="grid">
+<script>
+const dev=[
+['⌨️','AI-Assisted SDLC','Requirements, design, coding, testing, documentation and maintenance.'],
+['🤖','Coding Agents','Delegate bounded software tasks while developers supervise outcomes.'],
+['🏗️','AI Architecture','Design systems with models, tools, retrieval, agents, guardrails and observability.'],
+['🧪','AI Testing & Evaluation','Test functional quality, hallucination, safety, latency and cost.'],
+['☁️','AI DevOps','CI/CD, infrastructure automation, incident analysis and SRE copilots.'],
+['🧠','Prompt & Context Engineering','Structure instructions, context, tools and evaluation loops.'],
+['🔗','RAG & Agents','Build grounded knowledge systems and action-oriented applications.'],
+['🚀','New Developer Careers','AI engineer, agent engineer, AI product engineer, evaluator and AI platform roles.']
+];
+document.write(dev.map(x=>`<div class="card searchable-card" onclick="openTopic('${x[1]}')"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p><span class="tag">Learn + practice →</span><a class="learnlink" href="#" onclick="event.stopPropagation();openExternal('${x[1]}')">Learn online ↗</a></div>`).join(''));
+</script>
+</div></section>
 
-  <footer>
-    <div class="container footer-inner">
-      <a class="brand" href="#home"><span class="brand-mark">A</span><span>Agentix<span>Internal</span></span></a>
-      <div>© <span id="year"></span> AgentixInternal. All rights reserved.</div>
-      <div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
-    </div>
-  </footer>
+<section id="skills">
+<div class="sectionHead"><div><h2>AI Skills Roadmap</h2><p>A progression from understanding AI to leading AI-enabled organizations.</p></div></div>
+<div class="path">
+<div class="level"><div class="num">01 · BEGINNER</div><h3>Understand</h3><ul><li>AI vocabulary</li><li>GenAI fundamentals</li><li>Prompting</li><li>AI safety</li></ul></div>
+<div class="level"><div class="num">02 · PRACTITIONER</div><h3>Build</h3><ul><li>RAG</li><li>APIs & tools</li><li>Agents</li><li>AI workflows</li></ul></div>
+<div class="level"><div class="num">03 · ADVANCED</div><h3>Engineer</h3><ul><li>Evaluation</li><li>Architecture</li><li>AI DevOps</li><li>Production AI</li></ul></div>
+<div class="level"><div class="num">04 · AI LEADER</div><h3>Transform</h3><ul><li>AI strategy</li><li>Operating model</li><li>Governance</li><li>ROI & change</li></ul></div>
+</div></section>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.textContent = isOpen ? '✕' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.textContent = '☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
+<section id="teen">
+<div class="sectionHead"><div><h2>AI for a 14-Year-Old</h2><p>Use AI as a learning partner — not as a replacement for thinking.</p></div></div>
+<div class="grid">
+<div class="card" onclick="openTopic('Creative AI')"><div class="icon">🎨</div><h3>Creativity</h3><p>Stories, presentations, images, ideas and experiments.</p></div>
+<div class="card" onclick="openTopic('AI + Coding')"><div class="icon">💻</div><h3>AI + Coding</h3><p>Learn logic, build small apps and understand how software works.</p></div>
+<div class="card" onclick="openTopic('Research with AI')"><div class="icon">🔬</div><h3>Research</h3><p>Ask better questions, compare sources and verify claims.</p></div>
+<div class="card" onclick="openTopic('Responsible AI for Teens')"><div class="icon">🛡️</div><h3>Responsible AI</h3><p>Privacy, misinformation, copyright, bias and human judgment.</p></div>
+</div></section>
 
-    // This front-end form opens the visitor's email app; it does not send messages to a server.
-    document.getElementById('contactForm').addEventListener('submit', event => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const data = new FormData(form);
-      const name = String(data.get('name') || '').trim();
-      const email = String(data.get('email') || '').trim();
-      const subject = String(data.get('subject') || '').trim();
-      const message = String(data.get('message') || '').trim();
-      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-      document.getElementById('formStatus').textContent = 'Opening your email app to complete the message…';
-      window.location.href = `mailto:info@agentixinfo.com?subject=${encodeURIComponent(subject || 'Website enquiry')}&body=${encodeURIComponent(body)}`;
-    });
-  </script>
+<section id="resources">
+<div class="sectionHead"><div><h2>AI Resources</h2><p>Curated starting points for continuous learning.</p></div></div>
+<div class="resources">
+<div class="timeline">
+<div class="resource"><div><b>AI research & papers</b><br><span>Track model capabilities, benchmarks and research directions.</span></div><span class="score">★★★★★</span></div>
+<div class="resource"><div><b>Courses & learning platforms</b><br><span>Structured learning from fundamentals through applied AI.</span></div><span class="score">★★★★★</span></div>
+<div class="resource"><div><b>AI engineering documentation</b><br><span>Models, APIs, RAG, agents, evaluation and deployment.</span></div><span class="score">★★★★☆</span></div>
+<div class="resource"><div><b>Newsletters & briefings</b><br><span>Stay current without consuming the entire AI internet.</span></div><span class="score">★★★★☆</span></div>
+<div class="resource"><div><b>Communities & channels</b><br><span>Practitioner discussions, demos and real-world lessons.</span></div><span class="score">★★★★☆</span></div>
+</div>
+<div class="matrix">
+<b>Weekly AI briefing</b>
+<p style="color:var(--muted);font-size:12px">A future version can connect live sources and automatically generate:</p>
+<ul style="color:#b7c8db;font-size:12px"><li>5 important AI developments</li><li>Enterprise implications</li><li>Developer impact</li><li>One practical experiment</li><li>One leadership question</li></ul>
+<button class="btn" onclick="openTopic('Weekly AI Briefing')">Preview briefing →</button>
+</div>
+</div></section>
+
+<section id="official-links">
+<div class="sectionHead"><div><h2>Official Learning Links</h2><p>Start with trusted documentation, courses and practitioner resources.</p></div></div>
+<div class="grid">
+<a class="card" href="https://cloud.google.com/learn/training/machinelearning-ai" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">☁️</div><h3>Google Cloud AI & ML</h3><p>AI/ML courses from beginner through advanced, including GenAI and MLOps.</p><span class="tag">Open resource ↗</span></a>
+<a class="card" href="https://huggingface.co/learn" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">🤗</div><h3>Hugging Face Learn</h3><p>LLMs, agents, robotics, computer vision, audio, diffusion and more.</p><span class="tag">Open resource ↗</span></a>
+<a class="card" href="https://platform.openai.com/docs" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">◎</div><h3>OpenAI Developer Docs</h3><p>Models, APIs, agents, evaluation and application-building guidance.</p><span class="tag">Open resource ↗</span></a>
+<a class="card" href="https://docs.anthropic.com/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">◌</div><h3>Anthropic Docs</h3><p>Claude development, tool use, prompting and agentic application patterns.</p><span class="tag">Open resource ↗</span></a>
+<a class="card" href="https://learn.microsoft.com/en-us/ai/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">▦</div><h3>Microsoft AI Learning</h3><p>AI concepts, Azure AI, Copilot, responsible AI and developer learning.</p><span class="tag">Open resource ↗</span></a>
+<a class="card" href="https://developers.sap.com/ai/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="icon">SAP</div><h3>SAP AI Developer Center</h3><p>Joule, AI Foundation, BTP AI, RAG on HANA and SAP AI development resources.</p><span class="tag">Open resource ↗</span></a>
+</div></section>
+
+<div class="footer">AI Executive Learning Hub · Designed as a continuously evolving learning system · Prototype</div>
+</main>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+<div class="modalBox"><button class="close" onclick="closeModal()">✕</button><div id="modalContent"></div></div>
+</div>
+
+<script>
+const details={
+"AI & Machine Learning":["What it is","AI is the broader field of building systems that perform tasks associated with intelligence. Machine learning enables systems to learn patterns from data rather than relying only on explicit rules.","Practice","Explain supervised vs. unsupervised learning using a business example. Then identify one enterprise process where prediction could improve a decision."],
+"Generative AI":["Why it matters","Generative models can create new text, code, images, audio and other structured outputs. Their value depends on context, workflow integration and evaluation.","Practice","Take one recurring work task and redesign it as: human only → AI-assisted → AI-agent workflow."],
+"LLMs":["Mental model","LLMs predict and transform sequences of tokens using learned statistical representations. Important concepts include context, embeddings, inference, tool use and evaluation.","Practice","Compare a short prompt with a context-rich prompt and document the quality difference."],
+"RAG":["Architecture","Retrieval-augmented generation retrieves relevant enterprise knowledge before generation, improving grounding and enabling answers based on controlled sources.","Practice","Sketch a RAG architecture for an HR policy assistant: sources → chunking → embeddings → retrieval → generation → citations."],
+"AI Agents":["Mental model","An agent combines a capable model with instructions, tools, state and an execution loop. The key shift is from generating an answer to completing a task.","Practice","Break a project-status workflow into planning, tool calls, verification and human approval."],
+"Agentic AI":["Enterprise view","Agentic systems can coordinate multiple steps and tools. Production adoption requires clear boundaries, permissions, observability, evaluation and fallback paths.","Practice","Choose one workflow and define the agent's goal, allowed tools, approval points and success metric."],
+"AI Strategy":["Executive framework","Build an AI portfolio around strategic value, feasibility, data readiness, risk and change capacity — not technology novelty alone.","Practice","Create a 2x2 of business impact vs. implementation complexity for five AI opportunities."],
+"Governance & Security":["Control model","AI governance covers data, privacy, access, model risk, evaluation, auditability, human oversight and security.","Practice","Create a minimum control checklist for an internal enterprise AI assistant."],
+"AI Operating Model":["Operating model","Define who owns AI strategy, platforms, product delivery, model operations, data, security, risk and adoption.","Practice","Map central platform responsibilities against business-unit responsibilities."],
+"AI-Assisted SDLC":["Software delivery","AI can augment requirements, architecture, coding, testing, documentation, DevOps and incident response. Human review and automated evaluation remain essential.","Practice","Map your current SDLC and mark where AI can assist, automate or remain human-only."],
+"Executive AI Briefing":["Leadership habit","A useful executive briefing connects capability changes to business impact, risk, workforce implications and decisions.","Practice","For every AI development ask: What changed? Why now? Where could it create value? What could go wrong?"],
+"Responsible AI for Teens":["Safe learning","Young learners should use AI with privacy awareness, source verification, age-appropriate safeguards and an emphasis on developing their own reasoning.","Practice","Ask AI for an explanation, then verify three claims independently and rewrite the answer in your own words."]
+};
+const links={
+'AI & Machine Learning':'https://cloud.google.com/learn/training/machinelearning-ai',
+'Generative AI':'https://www.cloudskillsboost.google/course_templates/536',
+'LLMs':'https://huggingface.co/learn/llm-course/chapter1/1',
+'RAG':'https://python.langchain.com/docs/tutorials/rag/',
+'AI Agents':'https://huggingface.co/learn/agents-course/unit0/introduction',
+'Agentic AI':'https://huggingface.co/learn/agents-course/unit0/introduction',
+'Multimodal AI':'https://ai.google.dev/gemini-api/docs',
+'AI Automation':'https://learn.microsoft.com/en-us/ai/',
+'AI Strategy':'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+'AI Operating Model':'https://www.nist.gov/itl/ai-risk-management-framework',
+'Governance & Security':'https://www.nist.gov/itl/ai-risk-management-framework',
+'ROI & Business Cases':'https://www.microsoft.com/en-us/worklab/work-trend-index',
+'AI Transformation':'https://cloud.google.com/transform',
+'Agentic Enterprise':'https://learning.sap.com/courses/cloud-onboarding-for-sap-ibp/unlocking-artificial-intelligence-s-potential-in-sap',
+'Adoption Roadmap':'https://www.nist.gov/itl/ai-risk-management-framework',
+'Responsible AI':'https://www.nist.gov/itl/ai-risk-management-framework',
+'AI-Assisted SDLC':'https://github.com/features/copilot',
+'Coding Agents':'https://docs.github.com/en/copilot',
+'AI Architecture':'https://cloud.google.com/architecture/ai-ml',
+'AI Testing & Evaluation':'https://platform.openai.com/docs/guides/evals',
+'AI DevOps':'https://learn.microsoft.com/en-us/azure/devops/',
+'Prompt & Context Engineering':'https://huggingface.co/learn/agents-course/unit2/introduction',
+'New Developer Careers':'https://huggingface.co/learn',
+'Executive AI Briefing':'https://www.weforum.org/agenda/archive/artificial-intelligence/',
+'Board & Investment Decisions':'https://www.nist.gov/itl/ai-risk-management-framework',
+'AI Business Cases':'https://cloud.google.com/transform',
+'Leadership Questions':'https://www.weforum.org/agenda/archive/artificial-intelligence/',
+'Creative AI':'https://www.google.com/ai/',
+'AI + Coding':'https://code.org/artificial-intelligence',
+'Research with AI':'https://www.google.com/ai/',
+'Responsible AI for Teens':'https://www.commonsensemedia.org/ai',
+'Weekly AI Briefing':'https://www.weforum.org/agenda/archive/artificial-intelligence/'
+};
+function openExternal(name){const url=links[name]; if(url) window.open(url,'_blank','noopener,noreferrer');}
+function openTopic(name){
+  const d=details[name]||[name,"This learning page is designed to explain the concept, connect it to practical examples and provide a hands-on exercise.","Learning path","Understand the concept → examine a real example → try a small exercise → reflect on what you learned."];
+  document.getElementById('modalContent').innerHTML=`<div class="kicker">Learning module</div><h2>${d[0]}</h2><p>${d[1]}</p><h3>Practical exercise</h3><p>${d[3]}</p><h3>Recommended learning pattern</h3><p>1. Understand the mental model<br>2. See a real-world example<br>3. Experiment hands-on<br>4. Measure the result<br>5. Capture the lesson</p><button class="btn" onclick="bookmark('${name.replace(/'/g,"")}')">🔖 Bookmark topic</button>`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+let bookmarks=0;
+function bookmark(){bookmarks++;document.getElementById('bookCount').textContent=bookmarks;closeModal()}
+function filterCards(){
+  const q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none');
+}
+</script>
 </body>
 </html>
+
